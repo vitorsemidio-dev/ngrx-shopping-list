@@ -1,5 +1,5 @@
-import { ShoppingAction, ShoppingActionTypes } from './../store/actions/shopping.actions';
-import { ShoppingItem } from '../store/models/shopping-item.model';
+import { ShoppingAction, ShoppingActionTypes } from '../actions/shopping.actions';
+import { ShoppingItem } from '../models/shopping-item.model';
 
 export interface ShoppingState {
   list: ShoppingItem[];
