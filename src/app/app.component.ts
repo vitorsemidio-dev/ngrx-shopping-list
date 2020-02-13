@@ -1,3 +1,4 @@
+import { AddItemAction } from './store/actions/shopping.actions';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -19,5 +20,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.shoppingItems$ = this.store.select(store => store.shopping);
+
+    setTimeout(() => this.addItem(), 2000);
+  }
+
+  addItem() {
+    this.store.dispatch(new AddItemAction({ id: '123', name: 'Pizza' }));
   }
 }
