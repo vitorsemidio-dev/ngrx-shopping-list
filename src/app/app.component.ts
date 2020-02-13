@@ -32,8 +32,8 @@ export class AppComponent implements OnInit {
     this.newShoppingItem = this.resetShoppingItem();
   }
 
-  removeItem(shoppingItem: ShoppingItem) {
-    this.store.dispatch(new RemoveItemAction(shoppingItem));
+  removeItem(id: string) {
+    this.store.dispatch(new RemoveItemAction(id));
   }
 
   resetShoppingItem(): ShoppingItem {
