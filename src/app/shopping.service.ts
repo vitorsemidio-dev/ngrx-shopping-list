@@ -17,7 +17,7 @@ export class ShoppingService {
   ) { }
 
   getShoppingItems() {
-    return this.http.get(this.SHOPPING_URL)
+    return this.http.get<ShoppingItem[]>(this.SHOPPING_URL)
       .pipe(
         delay(500)
       );
