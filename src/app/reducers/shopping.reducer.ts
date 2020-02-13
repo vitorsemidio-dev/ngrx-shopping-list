@@ -1,20 +1,28 @@
 import { ShoppingAction, ShoppingActionTypes } from './../store/actions/shopping.actions';
 import { ShoppingItem } from '../store/models/shopping-item.model';
 
-const initialState: Array<ShoppingItem> = [
-  {
-    id: '123',
-    name: 'Diet Coke'
-  }
-];
+export interface ShoppingState {
+  list: ShoppingItem[];
+  loading: boolean;
+  error: Error;
+}
 
-export function ShoppingReducer(state: Array<ShoppingItem> = initialState, action: ShoppingAction) {
+const initialState: ShoppingState = {
+  list: [],
+  loading: false,
+  error: undefined,
+}
+
+export function ShoppingReducer(state: ShoppingState = initialState, action: ShoppingAction) {
   switch (action.type) {
-    case ShoppingActionTypes.ADD_ITEM:
-      return [...state, action.payload];
+    case ShoppingActionTypes.ADD_ITEM_SUCCESS:
+      return {...state, list: action.payload, loading: false };
     case ShoppingActionTypes.REMOVE_ITEM:
-      const newState = state.filter(s => s.id !== action.payload.id);
-      return [...newState];
+      return {
+        ...state,
+        list: state.list.filter(s => s.id !== action.payload.id),
+        loading: false
+      };
     default:
       return state;
   }
