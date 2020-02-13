@@ -2,6 +2,7 @@ import { AddItemAction } from './store/actions/shopping.actions';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { v4 as uuid } from 'uuid';
 
 import { ShoppingItem } from './store/models/shopping-item.model';
 import { AppState } from './store/models/app-state.model';
@@ -13,6 +14,7 @@ import { AppState } from './store/models/app-state.model';
 })
 export class AppComponent implements OnInit {
   shoppingItems$: Observable<Array<ShoppingItem>>;
+  newShoppingItem: ShoppingItem = { id: '', name: '' };
 
   constructor(private store: Store<AppState>) {
 
@@ -25,6 +27,14 @@ export class AppComponent implements OnInit {
   }
 
   addItem() {
-    this.store.dispatch(new AddItemAction({ id: '123', name: 'Pizza' }));
+    this.newShoppingItem.id = uuid();
+
+    this.store.dispatch(new AddItemAction(this.newShoppingItem));
+
+    this.newShoppingItem = this.resetShoppingItem();
+  }
+
+  resetShoppingItem(): ShoppingItem {
+    return { id: '', name: '' };
   }
 }
