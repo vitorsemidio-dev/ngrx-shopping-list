@@ -1,4 +1,4 @@
-import { AddItemAction } from './store/actions/shopping.actions';
+import { AddItemAction, RemoveItemAction } from './store/actions/shopping.actions';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -22,8 +22,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.shoppingItems$ = this.store.select(store => store.shopping);
-
-    setTimeout(() => this.addItem(), 2000);
   }
 
   addItem() {
@@ -32,6 +30,10 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new AddItemAction(this.newShoppingItem));
 
     this.newShoppingItem = this.resetShoppingItem();
+  }
+
+  removeItem(shoppingItem: ShoppingItem) {
+    this.store.dispatch(new RemoveItemAction(shoppingItem));
   }
 
   resetShoppingItem(): ShoppingItem {

@@ -3,6 +3,7 @@ import { ShoppingItem } from '../models/shopping-item.model';
 
 export enum ShoppingActionTypes {
   ADD_ITEM = '@shopping/ADD_ITEM',
+  REMOVE_ITEM = '@shopping/REMOVE_ITEM',
   ADD_ITEM_SUCCESS = '@shopping/ADD_ITEM_SUCCESS',
   ADD_ITEM_FAILURE = '@shopping/ADD_ITEM_FAILURE',
 }
@@ -12,5 +13,10 @@ export class AddItemAction implements Action {
 
   constructor(public payload: ShoppingItem) {}
 }
+export class RemoveItemAction implements Action {
+  readonly type = ShoppingActionTypes.REMOVE_ITEM;
 
-export type ShoppingAction = AddItemAction;
+  constructor(public payload: ShoppingItem) {}
+}
+
+export type ShoppingAction = AddItemAction | RemoveItemAction;
