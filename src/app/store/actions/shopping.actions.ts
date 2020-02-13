@@ -28,7 +28,7 @@ export class AddItemSuccessAction implements Action {
 export class AddItemFailureAction implements Action {
   readonly type = ShoppingActionTypes.ADD_ITEM_FAILURE;
 
-  constructor(public payload: ShoppingItem) {}
+  constructor(public payload: Error) {}
 }
 
 export class LoadShoppingAction implements Action {
@@ -39,28 +39,28 @@ export class LoadShoppingAction implements Action {
 export class LoadShoppingSuccessAction implements Action {
   readonly type = ShoppingActionTypes.LOAD_SHOPPING_SUCCESS;
 
-  constructor(public payload: ShoppingItem) {}
+  constructor(public payload: Array<ShoppingItem>) {}
 }
 export class LoadShoppingFailureAction implements Action {
   readonly type = ShoppingActionTypes.LOAD_SHOPPING_FAILURE;
 
-  constructor(public payload: ShoppingItem) {}
+  constructor(public payload: Error) {}
 }
 
 export class RemoveItemAction implements Action {
   readonly type = ShoppingActionTypes.REMOVE_ITEM;
 
-  constructor(public payload: ShoppingItem) {}
+  constructor(public payload: string) {}
 }
 export class RemoveItemSuccessAction implements Action {
   readonly type = ShoppingActionTypes.REMOVE_ITEM_SUCCESS;
 
-  constructor(public payload: ShoppingItem) {}
+  constructor(public payload: string) {}
 }
 export class RemoveItemFailureAction implements Action {
   readonly type = ShoppingActionTypes.REMOVE_ITEM_FAILURE;
 
-  constructor(public payload: ShoppingItem) {}
+  constructor(public payload: string) {}
 }
 
 
