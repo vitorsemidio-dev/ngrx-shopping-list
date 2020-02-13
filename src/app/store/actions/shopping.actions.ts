@@ -20,10 +20,51 @@ export class AddItemAction implements Action {
 
   constructor(public payload: ShoppingItem) {}
 }
+export class AddItemSuccessAction implements Action {
+  readonly type = ShoppingActionTypes.ADD_ITEM_SUCCESS;
+
+  constructor(public payload: ShoppingItem) {}
+}
+export class AddItemFailureAction implements Action {
+  readonly type = ShoppingActionTypes.ADD_ITEM_FAILURE;
+
+  constructor(public payload: ShoppingItem) {}
+}
+
+export class LoadShoppingAction implements Action {
+  readonly type = ShoppingActionTypes.LOAD_SHOPPING;
+
+  constructor(public payload: ShoppingItem) {}
+}
+export class LoadShoppingSuccessAction implements Action {
+  readonly type = ShoppingActionTypes.LOAD_SHOPPING_SUCCESS;
+
+  constructor(public payload: ShoppingItem) {}
+}
+export class LoadShoppingFailureAction implements Action {
+  readonly type = ShoppingActionTypes.LOAD_SHOPPING_FAILURE;
+
+  constructor(public payload: ShoppingItem) {}
+}
+
 export class RemoveItemAction implements Action {
   readonly type = ShoppingActionTypes.REMOVE_ITEM;
 
   constructor(public payload: ShoppingItem) {}
 }
+export class RemoveItemSuccessAction implements Action {
+  readonly type = ShoppingActionTypes.REMOVE_ITEM_SUCCESS;
 
-export type ShoppingAction = AddItemAction | RemoveItemAction;
+  constructor(public payload: ShoppingItem) {}
+}
+export class RemoveItemFailureAction implements Action {
+  readonly type = ShoppingActionTypes.REMOVE_ITEM_FAILURE;
+
+  constructor(public payload: ShoppingItem) {}
+}
+
+
+export type ShoppingAction =
+ | AddItemAction | AddItemSuccessAction | AddItemFailureAction
+ | RemoveItemAction | RemoveItemSuccessAction | RemoveItemFailureAction
+ | LoadShoppingAction | LoadShoppingSuccessAction | LoadShoppingFailureAction;
