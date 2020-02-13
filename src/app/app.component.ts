@@ -1,6 +1,6 @@
 import { AddItemAction, RemoveItemAction } from './store/actions/shopping.actions';
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { v4 as uuid } from 'uuid';
 
@@ -13,7 +13,9 @@ import { AppState } from './store/models/app-state.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  shoppingItems$: Observable<Array<ShoppingItem>>;
+  shoppingItems: Observable<Array<ShoppingItem>>;
+  loading$: Observable<boolean>;
+  error$: Observable<Error>;
   newShoppingItem: ShoppingItem = { id: '', name: '' };
 
   constructor(private store: Store<AppState>) {
@@ -21,7 +23,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.shoppingItems$ = this.store.select(store => store.shopping);
+    this.shoppingItems = this.store.select(store => store.shopping.list);
+    this.loading$ = this.store.select(store => store.shopping.loading);
+    this.error$ = this.store.select(store => store.shopping.error);
   }
 
   addItem() {
