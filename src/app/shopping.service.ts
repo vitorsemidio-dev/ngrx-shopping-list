@@ -28,8 +28,8 @@ export class ShoppingService {
       .pipe(delay(500));
   }
 
-  deleteShoppingItem(shoppingItem: ShoppingItem) {
-    return this.http.delete(`${this.SHOPPING_URL}/${shoppingItem.id}`)
+  deleteShoppingItem(id: string) {
+    return this.http.delete(`${this.SHOPPING_URL}/${id}`)
       .pipe(delay(500));
   }
 }
